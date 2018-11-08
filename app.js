@@ -31,33 +31,7 @@ function cellsClicked(e) {
             e.target.innerHTML = ' 0 ';
         }
     }
-    gameOver = winConditions();
 }
-
-// Function that checks if any of the winning combos are met
-function winConditions() {
-    for (i = 0; i < winningCombos.length; i++) {
-        x = 0;
-        o = 0;
-        for (j = 0; j < winningCombos[i].length; j++) {
-            if (cells[winningCombos[i][j]].textContent == ' X ') {
-                x++;
-            } else if (cells[winningCombos[i][j]].textContent == ' 0 ') {
-                o++;
-            }
-        }
-
-        if (x == 3) {
-            messageBox.textContent = "X wins!";
-            break;
-        } else if (o == 3) {
-            messageBox.textContent = "0 Wins!";
-            break;
-        }
-    }
-    return false;
-}
-
 
 
 // Add increments of 1 to playersTurn variable to determine who's turn it is
