@@ -31,7 +31,33 @@ function cellsClicked(e) {
             e.target.innerHTML = ' 0 ';
         }
     }
+    gameOver = winConditions();
 }
+
+// Function that checks if any of the winning combos are met
+function winConditions() {
+    for (i = 0; i < winningCombos.length; i++) {
+        x = 0;
+        o = 0;
+        for (j = 0; j < winningCombos[i].length; j++) {
+            if (cells[winningCombos[i][j]].textContent == ' X ') {
+                x++;
+            } else if (cells[winningCombos[i][j]].textContent == ' 0 ') {
+                o++;
+            }
+        }
+
+        if (x == 3) {
+            messageBox.textContent = "X wins!";
+            break;
+        } else if (o == 3) {
+            messageBox.textContent = "0 Wins!";
+            break;
+        }
+    }
+    return false;
+}
+
 
 
 // Add increments of 1 to playersTurn variable to determine who's turn it is
@@ -45,13 +71,13 @@ function checkPlayersTurn(e) {
 
 // Add event listener for reset button]
 let resetButton = document.querySelectorAll('#resetButton');
-resetButton.forEach(function(reset) {
+resetButton.forEach(function (reset) {
     reset.addEventListener("click", clearBoard);
 });
 
 // Reset board when reset button is clicked
 function clearBoard() {
-    for (i=0; i < cells.length; i++) {
+    for (i = 0; i < cells.length; i++) {
         cells[i].textContent = '';
         messageBox.textContent = "";
         playersTurn = 0
