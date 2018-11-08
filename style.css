@@ -46,3 +46,12 @@ h2{
     border-left: 1px black solid;
     border-right: 1px black solid;
 }
+
+button#resetButton {
+    margin-top: 65px;
+    background: red;
+    padding: 8px 25px;
+    border: 0;
+    color: #ffffff;
+    font-size: 14px;
+}

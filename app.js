@@ -1,8 +1,9 @@
-var playersTurn = 0;
+let playersTurn = 0;
 let cells = document.querySelectorAll('.cells');
 let messageBox = document.querySelector('.messagebox');
-var gameOver = false;
+let gameOver = false;
 
+//Add event listener for the cells
 cells.forEach(function (cell) {
     cell.addEventListener('click', cellsClicked);
     cell.addEventListener('click', checkPlayersTurn);
@@ -23,10 +24,12 @@ let winningCombos = [
 
 // Alternate between players
 function cellsClicked(e) {
-    if (playersTurn % 2 == 0) {
-        e.target.innerHTML = ' X ';
-    } else {
-        e.target.innerHTML = ' 0 ';
+    if (gameOver == false) {
+        if (playersTurn % 2 == 0) {
+            e.target.innerHTML = ' X ';
+        } else {
+            e.target.innerHTML = ' 0 ';
+        }
     }
 }
 
@@ -34,11 +37,24 @@ function cellsClicked(e) {
 // Add increments of 1 to playersTurn variable to determine who's turn it is
 // Once there are 9 clicks, alert that it's a tie
 function checkPlayersTurn(e) {
-          playersTurn++;
-          if (playersTurn == 9) {
-            messageBox.textContent = "It's a tie!";
-        } 
-    }   
+    playersTurn++;
+    if (playersTurn == 9) {
+        messageBox.textContent = "It's a tie!";
+    }
+}
 
-    
+// Add event listener for reset button]
+let resetButton = document.querySelectorAll('#resetButton');
+resetButton.forEach(function(reset) {
+    reset.addEventListener("click", clearBoard);
+});
+
+// Reset board when reset button is clicked
+function clearBoard() {
+    for (i=0; i < cells.length; i++) {
+        cells[i].textContent = '';
+        messageBox.textContent = "";
+        playersTurn = 0
+    }
+}
 
