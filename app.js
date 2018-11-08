@@ -33,6 +33,14 @@ function cellsClicked(e) {
     }
 }
 
+function checkWinner() {
+    for (var i = 0; i < winningCombos.length; i++) {
+        for (var j = 0; j < winningCombos.length; j++) {
+            console.log(winningCombos[i][j]);
+        }
+    }
+}
+
 
 // Add increments of 1 to playersTurn variable to determine who's turn it is
 // Once there are 9 clicks, alert that it's a tie
@@ -58,3 +66,4 @@ function clearBoard() {
     }
 }
 
+checkWinner();
