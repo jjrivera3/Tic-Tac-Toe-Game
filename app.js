@@ -21,10 +21,13 @@ let winningCombos = [
     [2, 4, 6]
 ]
 
-// Alternate between players
+// Function run when clicking
 function cellsClicked(e) {
     if (gameOver == true) {
         clearBoard();
+        return;
+    } else if (event.target.textContent) {
+        messageBox.textContent = "That square is already taken!";
         return;
     }
     if (playersTurn % 2 == 0) {
@@ -48,9 +51,11 @@ function checkWinner() {
         // Copy of winning combos that we are iterating through
         let winIndex = winningCombos[i];
         for (var j = 0; j < winIndex.length; j++) {
+            // If the cell text content is = X than add 1 to xsum
             if(cells[winIndex[j]].textContent == ' X '){
                 xsum++;
             } 
+            // If the cell text content is = 0 than add 1 to osum
             if(cells[winIndex[j]].textContent == ' 0 '){
                     osum++;
 
@@ -76,6 +81,8 @@ function checkPlayersTurn() {
     if (playersTurn == 9) {
         messageBox.textContent = "It's a tie!";
         gameOver = true;
+    } else {
+        messageBox.textContent = "";
     }
 }
 
